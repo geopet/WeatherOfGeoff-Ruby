@@ -6,7 +6,7 @@ require_relative 'config'
 
 class CurrentWeather
 
-  def initialize(zip = "#{HOME}")
+  def initialize(zip = "#{DEFAULT}")
     if zip.downcase == 'work'
       zip = "#{WORK}"
     elsif zip.downcase == 'home'
