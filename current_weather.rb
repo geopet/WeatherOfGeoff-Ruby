@@ -1,4 +1,4 @@
-class Current_Weather
+class CurrentWeather
 
   def initialize(zip = "#{DEFAULT}")
     if zip.downcase == 'work'
@@ -15,21 +15,38 @@ class Current_Weather
     @parsed_json = JSON.parse(resp.body)
   end
 
-  def describe_weather
-    @last_updated = @parsed_json['current_observation']['observation_time']
-    @location     = @parsed_json['current_observation']['display_location']['full']
-    @current_temp = @parsed_json['current_observation']['temp_f']
-    @conditions   = @parsed_json['current_observation']['weather']
-    @wind         = @parsed_json['current_observation']['wind_string']
+  def last_updated
+    @parsed_json['current_observation']['observation_time']
+  end
+
+  def location
+    @parsed_json['current_observation']['display_location']['full']
+  end
+
+  def current_temp
+    @parsed_json['current_observation']['temp_f']
+  end
+
+  def conditions
+    @parsed_json['current_observation']['weather']
+  end
+
+  def wind
+    @parsed_json['current_observation']['wind_string']
   end
 
   def get_current
     get_json
-    describe_weather
     puts
-    puts "#{@last_updated}"
-    puts "#{@location} #{@zip} - #{@current_temp}F - #{@conditions}"
-    puts "Winds #{@wind.downcase}"
+    puts last_updated
+    puts "#{location} #{@zip} - #{current_temp}F - #{conditions}"
+    puts "Winds #{wind.downcase}"
+  end
+
+  def write_to_file
+    File.open('archive.md', 'a') do |file|
+      file.puts "#{last_updated}: #{@zip} - #{current_temp}F - #{conditions} - #{wind}"
+    end
   end
 
 end
