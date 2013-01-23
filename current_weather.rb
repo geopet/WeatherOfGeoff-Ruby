@@ -44,7 +44,7 @@ class CurrentWeather
   end
 
   def write_to_file
-    File.open('archive.md', 'a') do |file|
+    File.open("#{File.dirname(__FILE__)}/archive.md", 'a') do |file|
       file.puts "#{last_updated}: #{@zip} - #{current_temp}F - #{conditions} - #{wind}"
     end
   end
