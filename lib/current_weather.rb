@@ -1,5 +1,7 @@
 class CurrentWeather
 
+  attr_reader :zip
+
   def initialize(zip = "#{DEFAULT}")
     if zip.downcase == 'work'
       zip = "#{WORK}"
@@ -10,7 +12,7 @@ class CurrentWeather
   end
 
   def get_json
-    url = "http://api.wunderground.com/api/#{KEY}/conditions/q/#{@zip}.json"
+    url = "http://api.wunderground.com/api/#{KEY}/conditions/q/#{zip}.json"
     resp = Net::HTTP.get_response(URI.parse(url))
     @parsed_json = JSON.parse(resp.body)
   end
@@ -39,13 +41,13 @@ class CurrentWeather
     get_json
     puts
     puts last_updated
-    puts "#{location} #{@zip} - #{current_temp}F - #{conditions}"
+    puts "#{location} #{zip} - #{current_temp}F - #{conditions}"
     puts "Winds #{wind.downcase}"
   end
 
   def write_to_file
     File.open("#{File.dirname(__FILE__)}/archive.md", 'a') do |file|
-      file.puts "#{last_updated}: #{@zip} - #{current_temp}F - #{conditions} - #{wind}"
+      file.puts "#{last_updated}: #{zip} - #{current_temp}F - #{conditions} - #{wind}"
     end
   end
 

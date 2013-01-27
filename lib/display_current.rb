@@ -6,8 +6,8 @@ def display_current
     puts "#{weather.get_current}"
     weather.write_to_file
   elsif
-    ARGV.each do |item| 
-      weather = CurrentWeather.new( item )
+    ARGV.each do |zip| 
+      weather = CurrentWeather.new(zip)
       puts "#{weather.get_current}"
     end
   end

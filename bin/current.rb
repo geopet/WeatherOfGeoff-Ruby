@@ -2,7 +2,7 @@
 
 require 'net/http'
 require 'json'
-require_relative 'config'
-require_relative 'display_current'
+require_relative '../config/config'
+require_relative '../lib/display_current'
 
 display_current
