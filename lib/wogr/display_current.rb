@@ -1,9 +1,9 @@
 require_relative 'current_weather'
 
 module WeatherOfGeoff
-  class SomethingToName
+  module SomethingToName
 
-    def display_current
+    def self.display_current
       if ARGV.size == 0
         weather = CurrentWeather.new()
         puts "#{weather.get_current}"
