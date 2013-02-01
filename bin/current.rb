@@ -3,6 +3,7 @@
 require 'net/http'
 require 'json'
 require_relative '../config/config'
-require_relative '../lib/display_current'
+require_relative '../lib/wogr/display_current'
 
-display_current
+weather = WeatherOfGeoff::SomethingToName.new
+weather.display_current
