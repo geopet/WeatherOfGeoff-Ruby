@@ -1,5 +1,3 @@
-require_relative 'get_json'
-
 module WeatherOfGeoff
   class CurrentWeather
 

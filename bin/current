@@ -1,9 +1,10 @@
 #!/usr/bin/env rvm 1.9.3 do ruby
 
-require 'net/http'
-require 'json'
+lib_dir = File.expand_path("../../lib", __FILE__)
+$LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include? lib_dir
+
+require 'weather_of_geoff'
 require_relative '../config/config'
-require_relative '../lib/wogr/display_current'
 
 weather = WeatherOfGeoff::SomethingToName.new
 weather.display_current
