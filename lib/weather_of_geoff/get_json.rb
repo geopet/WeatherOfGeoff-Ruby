@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 
 module WeatherOfGeoff
-  class GetJSON
+  class WeatherFetch
 
     attr_reader :zip
 
@@ -10,7 +10,7 @@ module WeatherOfGeoff
       @zip = zip
     end
 
-    def call_api
+    def fetch
       url = "http://api.wunderground.com/api/#{KEY}/conditions/q/#{zip}.json"
       resp = Net::HTTP.get_response(URI.parse(url))
       resp.body

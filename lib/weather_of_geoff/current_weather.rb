@@ -1,7 +1,7 @@
 module WeatherOfGeoff
   class CurrentWeather
 
-    attr_reader :zip, :json
+    attr_reader :zip, :weather_data
 
     def initialize(zip = "#{DEFAULT}")
       if zip.downcase == 'work'
@@ -10,11 +10,11 @@ module WeatherOfGeoff
         zip = "#{HOME}"
       end
       @zip = zip
-      @json = GetJSON.new(@zip).call_api
+      @weather_data = WeatherFetch.new(@zip).fetch
     end
 
     def parsed_json
-      JSON.parse(json)
+      JSON.parse(weather_data)
     end
 
     def last_updated
