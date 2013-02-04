@@ -6,5 +6,5 @@ $LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include? lib_dir
 require 'weather_of_geoff'
 require_relative '../config/config'
 
-weather = WeatherOfGeoff::SomethingToName.new
+weather = WeatherOfGeoff::ZipProcessor.new
 weather.display_current

@@ -1,5 +1,5 @@
 module WeatherOfGeoff
-  class SomethingToName
+  class ZipProcessor
 
     def display_current
       if ARGV.size == 0
